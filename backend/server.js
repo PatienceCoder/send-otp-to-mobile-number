@@ -11,6 +11,7 @@ app.use(cors({
     credentials:true
 }))
 const client = new twilio(process.env.TWILIO_ACCOUNT_SID,process.env.TWILIO_AUTH_TOKEN);
+//MAKE SURE TO UPDATE THE TWILIO_ACCOUNT_SID AND TWILIO_AUTH_TOKEN WITH YOUR CREDENTIALS
 function generateOTP(){
     return Math.floor(1000 + Math.random() * 9000)
 }
