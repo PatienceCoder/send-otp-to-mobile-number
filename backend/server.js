@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:"http://localhost:5173", //MAKE SURE TO ADD YOUR FRONTEND URL HERE
     credentials:true
 }))
 const client = new twilio(process.env.TWILIO_ACCOUNT_SID,process.env.TWILIO_AUTH_TOKEN);
