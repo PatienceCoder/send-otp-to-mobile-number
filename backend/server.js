@@ -12,9 +12,13 @@ app.use(cors({
 }))
 const client = new twilio(process.env.TWILIO_ACCOUNT_SID,process.env.TWILIO_AUTH_TOKEN);
 //MAKE SURE TO UPDATE THE TWILIO_ACCOUNT_SID AND TWILIO_AUTH_TOKEN WITH YOUR CREDENTIALS
+
+//THIS FUNCTION IS USED TO GENERATE A 4 DIGIT OTP
 function generateOTP(){
     return Math.floor(1000 + Math.random() * 9000)
 }
+
+//THIS FUNCTION IS USED TO SEND THE OTP TO MOBILE NUMBER
 async function sendOTP(name,mobilenumber,otp){
     return client.messages.create({
         from:process.env.TWILIO_PHONE_NUMBER,
@@ -22,6 +26,7 @@ async function sendOTP(name,mobilenumber,otp){
         body:`Hi ${name} your otp is ${otp}`
     })
 }
+ 
 app.post('/sendotp',async(req,res) => {
     const {name,mobilenumber} = req.body;
     const otp = generateOTP()
